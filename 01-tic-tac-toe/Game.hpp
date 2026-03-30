@@ -16,5 +16,6 @@ public:
 
 public:
     Game(int size, Player* p1, Player* p2);
+    ~Game();
     bool makeMove(int r, int c);
 };

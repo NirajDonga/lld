@@ -12,6 +12,12 @@ Game::Game(int size, Player* p1, Player* p2) : board(size) {
     strategies.push_back(new DiaWin());
 }
 
+Game::~Game() {
+    for (WinningStratergies* strategy : strategies) {
+        delete strategy;
+    }
+}
+
 bool Game::makeMove(int r, int c) {
     
     Symbol* symbol = currPlayer->getSymbol();
