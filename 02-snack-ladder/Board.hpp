@@ -7,9 +7,8 @@ private:
     std::map<int,int> jump;
 
 public:
-    Board(int sz, int jumps);
+    Board(int sz);
+    void addJump(int start, int end);
     int getJump(int cord);
-    
-private:
-    void addRandomJumps(int count);
+    int getSize();
 };

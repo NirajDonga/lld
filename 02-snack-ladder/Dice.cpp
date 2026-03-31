@@ -3,6 +3,10 @@
 
 using namespace std;
 
+Dice::Dice(int s) {
+    sides = s;
+}
+
 int Dice::roll() {
-    return (rand() % 6) + 1;
+    return (rand() % sides) + 1;
 }

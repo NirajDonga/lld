@@ -6,13 +6,12 @@
 
 class Game {
 private:
-    Board board;
-    Dice dice;
+    Board* board;
+    Dice* dice;
     std::queue<Player*> players;
-    int boardSize;
 
 public:
-    Game(int sz);
+    Game(Board* b, Dice* d);
     void addPlayer(Player* p);
     void play();
 };

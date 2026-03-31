@@ -1,9 +1,12 @@
 #include "Board.hpp"
 #include <cstdlib>
 
-Board::Board(int sz, int jumps) {
+Board::Board(int sz) {
     size = sz;
-    addRandomJumps(jumps);
+}
+
+void Board::addJump(int start, int end) {
+    jump[start] = end;
 }
 
 int Board::getJump(int cord) {
@@ -13,13 +16,6 @@ int Board::getJump(int cord) {
     return cord; 
 }
 
-void Board::addRandomJumps(int count) {
-    for (int i = 0; i < count; i++) {
-        int start = (rand() % (size - 2)) + 2; 
-        int end = (rand() % (size - 2)) + 2;
-        
-        if (start != end && jump.find(start) == jump.end()) {
-            jump[start] = end;
-        }
-    }
+int Board::getSize() {
+    return size;
 }
