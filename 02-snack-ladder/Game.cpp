@@ -4,8 +4,7 @@
 
 using namespace std;
 
-Game::Game(int sz) : board(sz, (rand() % ((sz / 3) + 1)) + (sz / 3)), dice() {
-    boardSize = sz; // Store sz so we can check for a win in play()
+Game::Game(Board* b, Dice* d) : board(b), dice(d) {
 }
 
 void Game::addPlayer(Player* p) {
@@ -13,9 +12,10 @@ void Game::addPlayer(Player* p) {
 }
 
 void Game::play() {
+    int boardSize = board->getSize();
 
     while(!players.empty()) {
-        int num = dice.roll(); 
+        int num = dice->roll(); 
         Player* currPlayer = players.front(); 
         players.pop();
 
@@ -23,7 +23,7 @@ void Game::play() {
         pos += num;
 
         if (pos <= boardSize) { 
-            pos = board.getJump(pos);
+            pos = board->getJump(pos);
             currPlayer->setPosition(pos);
         }
 
@@ -32,10 +32,6 @@ void Game::play() {
             break;
         }
 
-        // cout << currPlayer->getName() << endl;
-
         players.push(currPlayer);
     }
-
-
 }
