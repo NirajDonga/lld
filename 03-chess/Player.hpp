@@ -8,7 +8,11 @@ private:
     bool isWhite;
 
 public:
-    Player(const std::string& name, bool flag);
-    std::string getName() const;
-    bool isWhiteSide() const;
+    Player(const std::string& name, bool flag) : name(name), isWhite(flag) {}
+    std::string getName() const {
+        return name;
+    }
+    bool isWhiteSide() const {
+        return isWhite;
+    }
 };
