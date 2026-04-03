@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "Piece.hpp"
+#include "ChessTypes.hpp"
 
 class Board {
 private:
@@ -10,9 +11,10 @@ private:
 
 public:
     Board() = default;
+    ~Board();
     void initializeBoard();
-    void move();
-    Piece& getPiece(const Position& position);
-    bool hasPiece(const Position& position);
-
+    bool move(const Position& from, const Position& to);
+    Piece* getPiece(const Position& position);
+    const Piece* getPiece(const Position& position) const;
+    bool hasPiece(const Position& position) const;
 };
