@@ -1,5 +1,7 @@
 #pragma once    
 
+#include <iostream>
+
 template<typename K, typename V>
 struct Node {
     K key;
@@ -67,21 +69,41 @@ public:
         tail = tail->next;
     }
 
-    void popNode() {
-
-        if(head == nullptr) return;
-        size--;
-        if(head == tail) {
-            delete head;
-            head = nullptr;
-            tail = nullptr;
-            return;
+    Node<K, V>* popNode() {
+        if (head == nullptr) {
+            return nullptr;
         }
 
         Node<K, V>* temp = head;
         head = head->next;
-        head->prev = nullptr;
-        delete(temp);
+
+        if (head != nullptr) {
+            head->prev = nullptr;
+        } 
+        else {
+            tail = nullptr;
+        }
+
+        temp->prev = nullptr;
+        temp->next = nullptr;
+        size--;
+        return temp;
+    }
+
+    int getSize() const {
+        return size;
+    }
+
+    void printLinkedList() const {
+        Node<K, V>* curr = head;
+        while (curr != nullptr) {
+            std::cout << "(" << curr->key << ", " << curr->value << ")";
+            if (curr->next != nullptr) {
+                std::cout << " <-> ";
+            }
+            curr = curr->next;
+        }
+        std::cout << std::endl;
     }
 
 
